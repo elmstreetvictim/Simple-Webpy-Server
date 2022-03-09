@@ -1,26 +1,19 @@
 import ScreenHelpers
 import web #pip3 install web.py
 
-
-import web
 render = web.template.render('templates/')
-
+helper = ScreenHelpers.screenHelper()
 urls = (
     '/(.*)', 'index'
 )
+app = web.application(urls, globals())
 
 class index:
 
-    global helper
-    helper = ScreenHelpers.screenHelper()
-
     def GET(self, name):
-        helper.TakescreenshotOfDesktop()
+        helper.TakeScreenshotOfDesktop()
         return render.index(name)
 
 
-
-
 if __name__ == "__main__":
-    app = web.application(urls, globals())
     app.run()

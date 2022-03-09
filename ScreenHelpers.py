@@ -1,6 +1,7 @@
 import pygetwindow as gw
 import cv2 as cv2
 import numpy as np
+import pyautogui as gui
 from PIL import ImageGrab, Image
 #from matplotlib import pyplot as plt
 
@@ -14,9 +15,10 @@ class screenHelper():
 		if len(windows) > 0:
 			return windows[0]
 		#return None
-
-	def TakescreenshotOfDesktop(self):
-		grab = ImageGrab.grab(bbox=(0, 0, 1920, 1080))
+	
+	def TakeScreenshotOfDesktop(self):
+		screen = gui.size()
+		grab = ImageGrab.grab(bbox=(0, 0, screen.width, screen.height))
 		grab.save('static/Desktop.png')
 		
 	def TakeScreenshotForWindow(self, windowName, with_filename):
